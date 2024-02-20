@@ -8,9 +8,22 @@ from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
 class RSAEncryption:
-    def __init__(self):
-        self.public_key_path = os.getenv('PUBLIC_KEY_PATH', '../keys/public_key.pem')
-        self.private_key_path = os.getenv('PRIVATE_KEY_PATH', '../keys/private_key.pem')
+    def __init__(self, env_file_path=None):
+        # Set default paths relative to the script's location
+        script_directory = os.path.dirname(os.path.abspath(__file__))
+
+        # Load environment variables from the user's file if provided
+        if env_file_path:
+            env_file_path = os.path.abspath(env_file_path)
+            load_dotenv(env_file_path)
+        else:
+            # If no specific file is provided, use the default .env file
+            default_env_file_path = os.path.join(script_directory, '.env')
+            load_dotenv(default_env_file_path)
+
+        # Set the paths based on the loaded environment variables
+        self.public_key_path = os.getenv('PUBLIC_KEY_PATH', os.path.join(script_directory, '../keys/public_key.pem'))
+        self.private_key_path = os.getenv('PRIVATE_KEY_PATH', os.path.join(script_directory, '../keys/private_key.pem'))
 
     def encrypt_with_public_key(self, text):
         public_key = self._read_key(self.public_key_path)
