@@ -14,7 +14,10 @@ pip install rsa-crypto-python
 from rsa_crypto_python.rsa_crypto_python import RSAEncryption
 
 # Create an instance of the RSAEncryption class
+
 rsa = RSAEncryption()
+# rsa = RSAEncryption(env_file_path=None)
+
 
 # crypt private_to_public
 original_text = 'Hello, this is a secret message!'
