@@ -5,13 +5,13 @@ A Python package for asymmetric encryption using RSA.
 ## Installation
 
 ```bash
-pip install rsa_crypto
+pip install rsa-crypto-python
 ```
 
 ## Usage
 
 ```python
-from rsa_crypto.rsa_crypto import RSAEncryption
+from rsa-crypto-python.rsa_crypto import RSAEncryption
 
 # Create an instance of the RSAEncryption class
 rsa = RSAEncryption()
