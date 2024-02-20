@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='rsa-crypto-python',
-    version='1.0.7',
+    version='2.0.0',
     packages=find_packages(),
     install_requires=[
         'cryptography',
