@@ -45,12 +45,12 @@ PRIVATE_KEY_PATH=/path/to/your/keys/private_key.pem
 ### To generate keys
 Generate Private Key
 ```bash
-openssl genpkey -algorithm RSA -out private_key.pem
+openssl genpkey -algorithm RSA -out keys/private_key.pem
 ```
 
 Generate Public Key
 ```bash
-openssl rsa -pubout -in private_key.pem -out public_key.pem
+openssl rsa -pubout -in keys/private_key.pem -out keys/public_key.pem
 ```
 
 
