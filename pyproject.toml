@@ -14,5 +14,5 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/relativity-codes/rsa-crypto.git"
-Issues = "https://github.com/relativity-codes/rsa-crypto/issues"
+Homepage = "https://github.com/relativity-codes/rsa-crypto-python.git"
+Issues = "https://github.com/relativity-codes/rsa-crypto-python/issues"
