@@ -16,7 +16,7 @@ from rsa_crypto_python.rsa_crypto_python import RSAEncryption
 # Create an instance of the RSAEncryption class
 rsa = RSAEncryption()
 
-# Encrypt with public key private_to_public
+# crypt private_to_public
 original_text = 'Hello, this is a secret message!'
 encrypted_text = rsa.encrypt_with_private_key(original_text)
 print('Encrypted Text:', encrypted_text)
@@ -25,7 +25,7 @@ print('Encrypted Text:', encrypted_text)
 decrypted_text = rsa.decrypt_with_public_key(encrypted_text)
 print('Decrypted Text:', decrypted_text)
 
-# Encrypt with public key public_to_private
+# crypt public_to_private
 original_text = 'Hello, this is a secret message!'
 encrypted_text = rsa.encrypt_with_public_key(original_text)
 print('Encrypted Text:', encrypted_text)
