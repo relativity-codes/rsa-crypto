@@ -22,8 +22,8 @@ class RSAEncryption:
             load_dotenv(default_env_file_path)
 
         # Set the paths based on the loaded environment variables
-        self.public_key_path = os.getenv('PUBLIC_KEY_PATH', os.path.join(script_directory, '../keys/public_key.pem'))
-        self.private_key_path = os.getenv('PRIVATE_KEY_PATH', os.path.join(script_directory, '../keys/private_key.pem'))
+        self.public_key_path = os.getenv('PUBLIC_KEY_PATH', os.path.join(script_directory, './keys/public_key.pem'))
+        self.private_key_path = os.getenv('PRIVATE_KEY_PATH', os.path.join(script_directory, './keys/private_key.pem'))
 
     def encrypt_with_public_key(self, text):
         public_key = self._read_key(self.public_key_path)
