@@ -1,5 +1,5 @@
 [project]
-name = "rsa-crypto"
+name = "rsa-crypto-python"
 version = "0.0.1"
 authors = [
   { name="Ukweh Everest(Exrelativity)", email="exrelativity@github.com" },
