@@ -9,8 +9,8 @@ load_dotenv()  # Load environment variables from .env file
 
 class RSAEncryption:
     def __init__(self):
-        self.public_key_path = os.getenv('PUBLIC_KEY', '../keys/public_key.pem')
-        self.private_key_path = os.getenv('PRIVATE_KEY', '../keys/private_key.pem')
+        self.public_key_path = os.getenv('PUBLIC_KEY_PATH', '../keys/public_key.pem')
+        self.private_key_path = os.getenv('PRIVATE_KEY_PATH', '../keys/private_key.pem')
 
     def encrypt_with_public_key(self, text):
         public_key = self._read_key(self.public_key_path)
@@ -36,6 +36,42 @@ class RSAEncryption:
             )
         )
         return decrypted.decode('utf-8')
+
+    def encrypt_with_private_key(self, text):
+        try:
+            private_key = self._read_key(self.private_key_path)
+            encrypted = private_key.sign(
+                text.encode('utf-8'),
+                padding.PSS(
+                    mgf=padding.MGF1(algorithm=padding.SHA256()),
+                    salt_length=padding.PSS.MAX_LENGTH
+                ),
+                hashes.SHA256()
+            )
+            return base64.b64encode(encrypted).decode('utf-8')
+        except Exception as e:
+            print(f"Encryption with private key failed: {e}")
+            return None
+
+    def decrypt_with_public_key(self, encrypted_text):
+        try:
+            public_key = self._read_key(self.public_key_path)
+            encrypted_bytes = base64.b64decode(encrypted_text)
+            public_key.verify(
+                encrypted_bytes,
+                text.encode('utf-8'),
+                padding.PSS(
+                    mgf=padding.MGF1(algorithm=padding.SHA256()),
+                    salt_length=padding.PSS.MAX_LENGTH
+                ),
+                hashes.SHA256()
+            )
+            return True
+        except cryptography.exceptions.InvalidSignature:
+            return False
+        except Exception as e:
+            print(f"Decryption with public key failed: {e}")
+            return None
 
     def _read_key(self, key_path):
         with open(key_path, 'rb') as key_file:

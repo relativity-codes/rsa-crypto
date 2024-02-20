@@ -16,12 +16,21 @@ from rsa_crypto_python.rsa_crypto_python import RSAEncryption
 # Create an instance of the RSAEncryption class
 rsa = RSAEncryption()
 
-# Encrypt with public key
+# Encrypt with public key private_to_public
+original_text = 'Hello, this is a secret message!'
+encrypted_text = rsa.encrypt_with_private_key(original_text)
+print('Encrypted Text:', encrypted_text)
+
+
+decrypted_text = rsa.decrypt_with_public_key(encrypted_text)
+print('Decrypted Text:', decrypted_text)
+
+# Encrypt with public key public_to_private
 original_text = 'Hello, this is a secret message!'
 encrypted_text = rsa.encrypt_with_public_key(original_text)
 print('Encrypted Text:', encrypted_text)
 
-# Decrypt with private key
+
 decrypted_text = rsa.decrypt_with_private_key(encrypted_text)
 print('Decrypted Text:', decrypted_text)
 ```
@@ -29,25 +38,19 @@ print('Decrypted Text:', decrypted_text)
 ## Configuration
 Set your public and private key paths in a .env file:
 ```bash
-PUBLIC_KEY  = "-----BEGIN PUBLIC KEY-----
-YOUR_PUBLIC_KEY_HERE
------END PUBLIC KEY-----"
-
-
-PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----
-YOUR_PRIVATE_KEY_HERE
------END PRIVATE KEY-----"
+PUBLIC_KEY_PATH=/path/to/your/keys/public_key.pem
+PRIVATE_KEY_PATH=/path/to/your/keys/private_key.pem
 ```
 
 ### To generate keys
 Generate Private Key
 ```bash
-openssl genpkey -algorithm RSA
+openssl genpkey -algorithm RSA -out private_key.pem
 ```
 
 Generate Public Key
 ```bash
-openssl rsa -pubout -in <(openssl genpkey -algorithm RSA)
+openssl rsa -pubout -in private_key.pem -out public_key.pem
 ```
 
 
