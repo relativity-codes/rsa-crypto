@@ -1,5 +1,5 @@
 import unittest
-from rsa_crypto.rsa_crypto import RSAEncryption
+from rsa_crypto_python.rsa_crypto_python import RSAEncryption
 
 
 class TestRSAEncryption(unittest.TestCase):
