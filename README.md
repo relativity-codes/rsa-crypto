@@ -11,7 +11,7 @@ pip install rsa-crypto-python
 ## Usage
 
 ```python
-from rsa-crypto-python.rsa_crypto import RSAEncryption
+from rsa_crypto_python.rsa_crypto_python import RSAEncryption
 
 # Create an instance of the RSAEncryption class
 rsa = RSAEncryption()
